@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+     {% load static %}
+{% load bootstrap4 %}
+
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<html lang="en">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <title>FootballPitch</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="../media/img/favicon.ico" rel="icon">
+    <link rel="icon" href="../media/img/siteicon.png">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+
+    <!-- Libraries Stylesheet -->
+    <link href="../static/js/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/js/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-white position-relative">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+            <a href="base.html" class="navbar-brand text-secondary">
+                <h1 class="display-4 text-uppercase">FootballPitch
+                    <img class="logo" src="../media/img/logo.png" alt="">
+                </h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0 pr-3 border-right">
+                    <a href="{{ '/' }}" class="nav-item nav-link active">Головна</a>
+                    <a href="{% url 'football' %}" class="nav-item nav-link">Футбол</a>
+                    <a href="{% url 'miny_football' %}" class="nav-item nav-link">Міні-футбол</a>
+                    <a href="tur.html" class="nav-item nav-link">Турніри</a>
+                    <a href="service.html" class="nav-item nav-link">Про нас</a>
+                    <a href="contact.html" class="nav-item nav-link">Контакти</a>
+                </div>
+                <div class="d-none d-lg-flex align-items-center pl-4">
+                    <i class="fa fa-2x fa-mobile-alt text-primary mr-3"></i>
+                    <div>
+                        <h6 class="text-body text-uppercase mb-1"><small>Телефонуйте зараз</small></h6>
+                        <h6 class="m-0">+380671314680</h6>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 px-0" style="margin-bottom: 90px;">
+      <div class="search">  <form action="{% url 'search' %}" method="get" class="d-flex">
+                                        <input class="form-contr" type="text" name="query" width="60"
+                                               placeholder="Поиск по сайту" aria-label="Search">
+                                        <button name="Поиск" class="btn btn-outline-success" type="submit">Ок</button>
+                                    </form></div>
+<div class="search_items">
+        {% if football %}
+        {% for footbal in football %}
+
+            <div class="col">
+                <div>
+
+                <div>
+                    <a href="{% url 'footballs' footbal.url %}">{{ footbal.title }}</a>
+                </div>
+            </div>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+    {% if miny_football %}
+        {% for miny_footbal in  miny_football %}
+
+            <div class="col-md-4">
+                <div class="card m-3 p-2">
+
+                     <div class="card-body">
+                    <a href="{% url 'miny_footballs' miny_footbal.slug %}">{{ miny_footbal.title }}</a>
+                </div>
+                </div>
+            </div>
+            </div>
+{% endfor %}
+{% endif %}
+
+
+        <div class="row mx-0 align-items-center">
+            <div class="col-lg-6 px-md-5 text-center text-lg-left">
+                <h1 class="display-2 text-uppercase mb-3">Аматорська футбольна ліга</h1>
+                <p class="text-dark mb-4">Футбол - це стиль життя!</p>
+                <a href="service.html" class="btn btn-dark text-uppercase mt-1 py-3 px-5">Про нас</a>
+            </div>
+            <div class="col-lg-6 px-0 text-right">
+                <img class="img-fluid mt-5 mt-lg-0" src="../media/img/nogaball.png" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img class="img-fluid mb-4 mb-lg-0" src="../media/img/ballfon.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="display-4 text-uppercase mb-4">Найкраща можливість проявити себе</h1>
+                    <h5 class="text-uppercase text-primary mb-3">Чудовий спосіб гарно провести час, розім'яти м'язи та отримати заряд азарту та ейфорії спортивних змагань.</h5>
+                    <p class="mb-4">Провести час в гарній компанії, та ще й збагатити своє здоров'я набагато приємніше, ніж провести всі вихідні на дивані. Чи не так? Футбольні ігри - доля не тільки професіоналів і діточок у дворі, але, перш за все, дорослих чоловіків, які вважають за краще бути учасниками, а не спостерігачами славнозвісної гри. Цікавить оренда міні-футбольного поля? Тоді тобі до нас! Наш сервіс допоможе Вам обрати якісний майданчик для гри у міні-футбол!</p>
+                    <a href="" class="btn btn-primary text-uppercase py-3 px-5">Більше</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    
+
+    <!-- Services Start -->
+
+
+
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase text-center mb-5">Переваги використання сервісу</h1>
+            <div class="row">
+                <div class="col-lg-3 mb-2">
+                    <div class="service-item rounded p-5 mb-4">
+                        <i class="fa fa-3x fa-eye text-primary mb-4"></i>
+                        <h4 class="text-uppercase mb-4">Легко <span class="d-block text-body">Знайти</span></h4>
+                        <p class="m-0">Зрозумілі локації з можливістю перегляду на мапі</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-2">
+                    <div class="service-item rounded p-5 mb-4">
+                        <i class="fa fa-3x fa-code text-primary mb-4"></i>
+                        <h4 class="text-uppercase mb-4">Структуризація <span class="d-block text-body">Оптимізація</span></h4>
+                        <p class="m-0">Структура та оптимізація забезпечують стабільну роботу</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-2">
+                    <div class="service-item rounded p-5 mb-4">
+                        <i class="fa fa-3x fa-envelope-open-text text-primary mb-4"></i>
+                        <h4 class="text-uppercase mb-4">Легко та <span class="d-block text-body">Зручно</span></h4>
+                        <p class="m-0">Простий та зручний у використанні сервіс</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-2">
+                    <div class="service-item rounded p-5 mb-4">
+                        <i class="fa fa-3x fa-dollar-sign text-primary mb-4"></i>
+                        <h4 class="text-uppercase mb-4">Цінова <span class="d-block text-body">Політика</span></h4>
+                        <p class="m-0">Можливість обрати місце для тренування, спираючись на цінову політику</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
+
+
+    <!-- Portfolio Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase text-center mb-5">Футбольні поля у місті Полтава</h1>
+            <div class="row">
+                <div class="col-12 text-center mb-2">
+                    <ul class="list-inline mb-4" id="portfolio-flters">
+                        <li class="btn btn-outline-dark text-uppercase py-2 px-4 active" data-filter="*">
+                            <i class="fa fa-star text-primary mr-2"></i>Усі
+                        </li>
+                        <li class="btn btn-outline-dark text-uppercase py-2 px-4" data-filter=".first">
+                            <i class="fa fa-star text-primary mr-2"></i>Стадіон "Vorskla"
+                        </li>
+                        <li class="btn btn-outline-dark text-uppercase py-2 px-4" data-filter=".second">
+                            <i class="fa fa-star text-primary mr-2"></i>Стадіон "Динамо"
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row portfolio-container">
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/vor-4.png" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/vor-4.png" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/vor-2.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/vor-2.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/vor-3.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/vor-3.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/vor-7.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/vor-7.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/vor-5.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/vor-5.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/vor-8.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/vor-8.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/dyn-1.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/dyn-1.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/dyn-4.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/dyn-4.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative rounded overflow-hidden mb-2">
+                        <img class="img-fluid w-100" src="../media/img/dyn-5.jpg" alt="">
+                        <div class="portfolio-btn d-flex align-items-center justify-content-center">
+                            <a href="../media/img/dyn-5.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-4x fa-plus text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio End -->
+
+
+    <!-- Pricing Plan Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase text-center mb-5">Ціни</h1>
+            <div class="row">
+                <div class="col-lg-4 mb-2">
+                    <div class="bg-light rounded text-center pt-5 mt-lg-5 mb-4">
+                        <h2 class="text-uppercase">Стадіон "Локомотив"</h2>
+                        <h6 class="text-uppercase text-body mb-5">Топ - 3</h6>
+                        <div class="text-center bg-dark rounded-circle p-4 mb-2">
+                            <h1 class="display-4 text-white mb-0">
+                                <small class="align-top"
+                                    style="font-size: 22px; line-height: 45px;">₴</small>550<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                    Година</small>
+                            </h1>
+                        </div>
+                        <div class="text-center py-4">
+                            <p>Міні-футбол</p>
+                            <p>Мінімум 5 Х 5</p>
+                            <p>48 м Х 28 м</p>
+                            <p>Можливість оренди від 1 години</p>
+                            <a href="" class="btn btn-dark text-uppercase py-2 px-4 my-3">Забронювати</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <div class="bg-dark rounded text-center pt-5 mb-4">
+                        <h2 class="text-uppercase text-white">Стадіон "Vorskla"</h2>
+                        <h6 class="text-uppercase text-secondary mb-5">Топ - 3</h6>
+                        <div class="text-center bg-primary rounded-circle p-4 mb-2">
+                            <h1 class="display-4 mb-0">
+                                <small class="align-top"
+                                    style="font-size: 22px; line-height: 45px;">₴</small>600<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                    Година</small>
+                            </h1>
+                        </div>
+                        <div class="text-center text-secondary py-4">
+                            <p>Міні-футбол</p>
+                            <p>Мінімум 5 Х 5</p>
+                            <p>50 м Х 30 м</p>
+                            <p>Можливість оренди від 1 години</p>
+                            <a href="" class="btn btn-primary text-uppercase py-2 px-4 my-3">Забронювати</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <div class="bg-light rounded text-center pt-5 mt-lg-5 mb-4">
+                        <h2 class=" text-uppercase">Стадіон "Динамо"</h2>
+                        <h6 class="text-uppercase text-body mb-5">Топ - 3</h6>
+                        <div class="text-center bg-dark rounded-circle p-4 mb-2">
+                            <h1 class="display-4 text-white mb-0">
+                                <small class="align-top"
+                                    style="font-size: 22px; line-height: 45px;">₴</small>500<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                    Година</small>
+                            </h1>
+                        </div>
+                        <div class="text-center py-4">
+                            <p>Міні-футбол</p>
+                            <p>Мінімум 5 Х 5</p>
+                            <p>46 м Х 26 м</p>
+                            <p>Можливість оренди від 1 години</p>
+                            <a href="" class="btn btn-dark text-uppercase py-2 px-4 my-3">Забронювати</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pricing Plan End -->
+
+
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <h1 class="display-4 text-uppercase text-center mb-5">Відгуки</h1>
+            <div class="owl-carousel testimonial-carousel">
+                <div class="testimonial-item position-relative text-center rounded p-4">
+                    <img class="img-fluid rounded mx-auto my-4" src="../media/img/illia.jpg" alt="">
+                    <h5 class="text-uppercase">Ілля Конотопов</h5>
+                    <p class="text-uppercase">Гравець команди "Маямі"</p>
+                    <p class="text-secondary">Прекрасний сайт. Усе зручно та зрозуміло.</p>
+                </div>
+                <div class="testimonial-item position-relative text-center rounded p-4">
+                    <img class="img-fluid rounded mx-auto my-4" src="../media/img/roman.jpg" alt="">
+                    <h5 class="text-uppercase">Роман Закотенко</h5>
+                    <p class="text-uppercase">Гравець команди "Юнайтед"</p>
+                    <p class="text-secondary">Крута система пошуку футболного поля. Дякую)</p>
+                </div>
+                <div class="testimonial-item position-relative text-center rounded p-4">
+                    <img class="img-fluid rounded mx-auto my-4" src="../media/img/aslan.jpg" alt="">
+                    <h5 class="text-uppercase">Аслан Сімаєв</h5>
+                    <p class="text-uppercase">Гравець команди "Бруклін"</p>
+                    <p class="text-secondary">Зайшов на сайт, знайшов необхідне футбольне поле і круто провів час зі своєю командою.</p>
+                </div>
+                <div class="testimonial-item position-relative text-center rounded p-4">
+                    <img class="img-fluid rounded mx-auto my-4" src="../media/img/taras.jpg" alt="">
+                    <h5 class="text-uppercase">Тарас Чоха</h5>
+                    <p class="text-uppercase">Гравець команди "Бруклін"</p>
+                    <p class="text-secondary">Знайшли зручне футбольне поле і тепер там постійно тренуємось. Спасибі за чудовий сервіс!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5 px-0">
+        <div class="row mt-5 mx-0">
+            <div class="col-12 px-0" style="height: 500px;">
+                <div class="position-relative h-100">
+                    <iframe class="position-relative w-100 h-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805743.2112066485!2d29.193573696411562!3d48.8010749493106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d825e425e6ba6b%3A0xcf3e6bdfb9e4ca82!2z0J_QvtC70YLQsNCy0LAsINCf0L7Qu9GC0LDQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCDQo9C60YDQsNGX0L3QsCwgMzYwMDA!5e0!3m2!1suk!2sus!4v1666014790737!5m2!1suk!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0 justify-content-center" style="margin-top: -160px;">
+            <div class="col-lg-6 col-md-8 col-sm-10 px-0">
+                <div class="contact-form bg-white rounded p-5">
+                    <div id="success"></div>
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate" >
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <input type="text" class="form-control bg-light border-0 p-4" id="name" placeholder="Ваше ім'я" required="required" data-validation-required-message="Будь ласка, введіть ваше ім'я" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <input type="email" class="form-control bg-light border-0 p-4" id="email" placeholder="Ваш Email" required="required" data-validation-required-message="Будь ласка, введіть ваш email" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control bg-light border-0 p-4" id="subject" placeholder="Запит" required="required" data-validation-required-message="Будь ласка, введіть ваш запит" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control bg-light border-0 py-3 px-4" rows="5" id="message" placeholder="Повідомлення" required="required" data-validation-required-message="Будь ласка, введіть ваше повідомлення"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary text-uppercase py-3 px-5" type="submit" id="sendMessageButton">Відправити</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-md-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="base.html" class="navbar-brand">
+                    <h1 class="m-0 mt-n2 text-white display-4">FootballPich</h1>
+                </a>
+                <p>Унікальний портал для пошуку та бронювання поля для гри у футбол</p>
+                <h6 class="text-uppercase text-white py-2">Слідкуйте за нами у соціальних мережах</h6>
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-lg btn-primary btn-lg-square mr-2" href="@Y0ur_Fantasy"><i class="fab fa-telegram"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square mr-2" href="https://www.facebook.com/profile.php?id=100010971522098"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square" href="https://instagram.com/taras_chokha0_0?igshid=YmMyMTA2M2Y="><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-white mb-4">Наші контакти</h4>
+                <p>Ми хочему бути максимально відкритими, тому ділимося з вам нашими даними.</p>
+                <p><i class="fa fa-map-marker-alt text-white mr-2"></i>36000 Першортавневий, 24, Полтава, Україна</p>
+                <p><i class="fa fa-phone-alt text-white mr-2"></i>+380671314680</p>
+                <p><i class="fa fa-envelope text-white mr-2"></i>info@gmail.com</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-white mb-4">Посилання</h4>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="base.html"><i class="fa fa-angle-right text-white mr-2"></i>Головна</a>
+                    <a class="text-white-50 mb-2" href="footobj/football_list.html"><i class="fa fa-angle-right text-white mr-2"></i>Футбол</a>
+                    <a class="text-white-50 mb-2" href="footobj/minyfootball_list.html"><i class="fa fa-angle-right text-white mr-2"></i>Міні-футбол</a>
+                    <a class="text-white-50 mb-2" href="tur.html"><i class="fa fa-angle-right text-white mr-2"></i>Турніри</a>
+                    <a class="text-white-50 mb-2" href="service.html"><i class="fa fa-angle-right text-white mr-2"></i>Про нас</a>
+                    <a class="text-white-50" href="contact.html"><i class="fa fa-angle-right text-white mr-2"></i>Зв'яжіться з нами</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-white mb-4">Поділіться новинами</h4>
+                <p class="mb-4">Діліться з нами новинами та цікавинками з футбольного життя для того, щоб ми стали кращими.</p>
+                <div class="w-100 mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Ваш Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary text-uppercase px-3">Відправити</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-4 px-sm-3 px-md-5" style="background: #111111;">
+        <p class="mb-2 text-center text-white-50">&copy; <a href="#">FootballPitch</a>. All Rights Reserved.</p>
+        <p class="m-0 text-center text-white-50">Designed by <a href="https://htmlcodex.com">Taras Chokha 2022</a></p>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/lib/easing/easing.min.js"></script>
+    <script src="../static/js/lib/waypoints/waypoints.min.js"></script>
+    <script src="../static/js/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/js/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="../static/js/lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="../static/js/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../static/js/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>

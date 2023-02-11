@@ -1,0 +1,232 @@
+
+
+{% load static %}
+{% load bootstrap4 %}
+
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>FootballPitch</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="../media/img/favicon.ico" rel="icon">
+    <link rel="icon" href="../../media/img/siteicon.png">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../../static/js/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../static/js/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../../static/css/style.css" rel="stylesheet">
+</head>
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-white position-relative">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+            <a href="../base.html" class="navbar-brand text-secondary">
+                <h1 class="display-4 text-uppercase">FootballPitch
+                    <img class="logo" src="../../media/img/logo.png" alt="">
+                </h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0 pr-3 border-right">
+                    <a href="{{ '/' }}" class="nav-item nav-link">Головна</a>
+                    <a href="{% url 'football' %}" class="nav-item nav-link active">Футбол</a>
+                    <a href="{% url 'miny_football' %}" class="nav-item nav-link">Міні-футбол</a>
+                    <a href="../tur.html" class="nav-item nav-link">Турніри</a>
+                    <a href="../service.html" class="nav-item nav-link">Про нас</a>
+                    <a href="../contact.html" class="nav-item nav-link">Контакти</a>
+                </div>
+                <div class="d-none d-lg-flex align-items-center pl-4">
+                    <i class="fa fa-2x fa-mobile-alt text-primary mr-3"></i>
+                    <div>
+                        <h6 class="text-body text-uppercase mb-1"><small>Телефонуйте зараз</small></h6>
+                        <h6 class="m-0">+380671314680</h6>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+     <!-- Page Header Start -->
+    <div class="page-header container-fluid bg-primary d-flex flex-column align-items-center justify-content-center">
+        <h1 class="display-3 text-uppercase mb-3">Футбол</h1>
+        <div class="d-inline-flex text-white">
+            <h6 class="text-uppercase m-0"><a class="text-white" href="">Головна</a></h6>
+            <h6 class="m-0 px-3">/</h6>
+            <h6 class="text-uppercase m-0">Футбол</h6>
+        </div>
+    </div>
+    <!-- Page Header Start -->
+
+      <div class="search">  <form action="{% url 'search' %}" method="get" class="d-flex">
+                                        <input class="form-contr" type="text" name="query" width="60"
+                                               placeholder="Поиск по сайту" aria-label="Search">
+                                        <button name="Поиск" class="btn btn-outline-success" type="submit">Ок</button>
+                                    </form></div>
+
+    <!-- Fiedls Start -->
+
+ 
+    <div class="whitebox" style="margin-top: -150px;">
+
+
+        {% for football in football_list %}
+            <div class="pitch">
+
+            <a href="bron.php" class="pitchinfo">
+
+                 <p class="pitchdesc1">
+                    {{ football.title }}
+                 </p>
+                 <p class="pitchdesc2">
+                   {{  football.description }}
+                 </p>
+            </a>
+            <div >
+                <img class="pitchimg" src="{{ football.image.url }}">
+            </div>
+            <div>
+                <iframe class="pitchmap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2586.157081818712!2d34.547081815118275!3d49.594787156527936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d825f9e8b297d5%3A0x367d9105677af4b9!2z0JLQvtGA0YHQutC70LA!5e0!3m2!1sru!2sua!4v1667549104335!5m2!1sru!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+    <!-- Fields End -->
+
+
+    <!-- About Info Start -->
+    <div class="container-fluid py-5">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-4 mb-2">
+                    <div class="d-flex align-items-center bg-light rounded mb-4 px-5" style="height: 150px;">
+                        <i class="fa fa-3x fa-map-marker-alt text-primary mr-3"></i>
+                        <div class="d-flex flex-column">
+                            <h5 class="text-uppercase">Our Office</h5>
+                            <p class="m-0">123 Street, New York, USA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <div class="d-flex align-items-center bg-light rounded mb-4 px-5" style="height: 150px;">
+                        <i class="fa fa-3x fa-envelope-open text-primary mr-3"></i>
+                        <div class="d-flex flex-column">
+                            <h5 class="text-uppercase">Email Us</h5>
+                            <p class="m-0">info@example.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <div class="d-flex align-items-center bg-light rounded mb-4 px-5" style="height: 150px;">
+                        <i class="fas fa-3x fa-phone-alt text-primary mr-3"></i>
+                        <div class="d-flex flex-column">
+                            <h5 class="text-uppercase">Call Us</h5>
+                            <p class="m-0">+012 345 6789</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Info End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-md-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="../base.html" class="navbar-brand">
+                    <h1 class="m-0 mt-n2 text-white display-4">FootballPich</h1>
+                </a>
+                <p>Унікальний портал для пошуку та бронювання поля для гри у футбол</p>
+                <h6 class="text-uppercase text-white py-2">Слідкуйте за нами у соціальних мережах</h6>
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-lg btn-primary btn-lg-square mr-2" href="@Y0ur_Fantasy"><i class="fab fa-telegram"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square mr-2" href="https://www.facebook.com/profile.php?id=100010971522098"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square" href="https://instagram.com/taras_chokha0_0?igshid=YmMyMTA2M2Y="><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-white mb-4">Наші контакти</h4>
+                <p>Ми хочему бути максимально відкритими, тому ділимося з вам нашими даними.</p>
+                <p><i class="fa fa-map-marker-alt text-white mr-2"></i>36000 Першортавневий, 24, Полтава, Україна</p>
+                <p><i class="fa fa-phone-alt text-white mr-2"></i>+380671314680</p>
+                <p><i class="fa fa-envelope text-white mr-2"></i>info@gmail.com</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-white mb-4">Посилання</h4>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="../base.html"><i class="fa fa-angle-right text-white mr-2"></i>Головна</a>
+                    <a class="text-white-50 mb-2" href="football_list.html"><i class="fa fa-angle-right text-white mr-2"></i>Футбол</a>
+                    <a class="text-white-50 mb-2" href="minyfootball_list.html"><i class="fa fa-angle-right text-white mr-2"></i>Міні-футбол</a>
+                    <a class="text-white-50 mb-2" href="../tur.html"><i class="fa fa-angle-right text-white mr-2"></i>Турніри</a>
+                    <a class="text-white-50 mb-2" href="../service.html"><i class="fa fa-angle-right text-white mr-2"></i>Про нас</a>
+                    <a class="text-white-50" href="../contact.html"><i class="fa fa-angle-right text-white mr-2"></i>Зв'яжіться з нами</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-white mb-4">Поділіться новинами</h4>
+                <p class="mb-4">Діліться з нами новинами та цікавинками з футбольного життя для того, щоб ми стали кращими.</p>
+                <div class="w-100 mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Ваш Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary text-uppercase px-3">Відправити</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-4 px-sm-3 px-md-5" style="background: #111111;">
+        <p class="mb-2 text-center text-white-50">&copy; <a href="#">FootballPitch</a>. All Rights Reserved.</p>
+        <p class="m-0 text-center text-white-50">Designed by <a href="https://htmlcodex.com">Taras Chokha 2022</a></p>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-up"></i></a>
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/js/lib/easing/easing.min.js"></script>
+    <script src="../../static/js/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../static/js/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../static/js/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="../../static/js/lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="../../static/js/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../../static/js/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../static/js/main.js"></script>
+</body>
+
+</html>
